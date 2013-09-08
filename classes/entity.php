@@ -13,8 +13,8 @@
 				{
 					$model = new $value['refTable'] ();
 					$data = $model->select (['id', $value['refName']], '', PDO::FETCH_ASSOC);
-					foreach ($data as $items)
-						$refData[$items['id']] = $items[$value['refName']];
+					foreach ($data as $row)
+						$refData[$row['id']] = $row[$value['refName']];
 					$this->fields[$key]['refData'] = $refData;
 				}
 			}
