@@ -10,7 +10,8 @@
 			
 		function __construct ()
 		{
-			$this->tableName = ['cart', 'Корзина'];
+			$this->tableName = 'cart'; 
+			$this->caption = 'Корзина';
 			parent::__construct ();
 		}
 		

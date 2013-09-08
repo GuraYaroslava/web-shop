@@ -13,7 +13,8 @@
 
 		function __construct ()
 		{
-			$this->tableName = ['categories', 'Категории'];
+			$this->tableName = 'categories';
+			$this->caption = 'Категории';
 			$data = $this->select (['id', 'name'], '', PDO::FETCH_ASSOC);
 			foreach ($data as $key => $items)
 				$names[$items['id']] = $items['name'];	

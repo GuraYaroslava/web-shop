@@ -1,7 +1,8 @@
 <?	class Entity
 	{
 		public
-			$tableName = array (), 
+			$tableName, 
+			$caption,
 			$fields = array (); 
 		
 		function __construct ()
@@ -23,7 +24,7 @@
 		public function update ($columns, $values, $id)
 		{
 			global $db;
-			$tableName = $this->tableName[0];
+			$tableName = $this->tableName;
 			$param = array_map (function ($a) {return "$a=:$a";}, $columns);
 			$query = "UPDATE $tableName SET ".implode (', ', $param)." WHERE id=:id";
 			$result = $db->prepare ($query);
@@ -36,7 +37,7 @@
 		public function add ($columns, $values)
 		{
 			global $db;
-			$tableName = $this->tableName[0];
+			$tableName = $this->tableName;
 			$query = "INSERT INTO $tableName (".implode (', ', $columns).") VALUES(:".implode (', :', $columns).")";
 			$result = $db->prepare ($query);
 			if (!$result) return false;   
@@ -47,7 +48,7 @@
 		public function delete ($values)	
 		{
 			global $db;
-			$tableName = $this->tableName[0];
+			$tableName = $this->tableName;
 			if (!isset ($values)) return false;   
 			$count = count ($values);
 			for ($i = 0; $i < $count ; $i++) $ids[$i] = ':'.$i;		
@@ -60,9 +61,9 @@
 		public function select ($selectArgs, $condition, $selectType = PDO::FETCH_NUM)
 		{
 			global $db;
-			$curTable = $this->tableName[0];
+			$curTable = $this->tableName
 			$query = "SELECT ";
-			$fields = array_map (function ($a) {$curTable = $this->tableName[0]; return "$curTable.$a";}, $selectArgs);
+			$fields = array_map (function ($a) {$curTable = $this->tableName; return "$curTable.$a";}, $selectArgs);
 			$query .= implode (', ', $fields)." FROM $curTable ";
 			if ($condition != '') $query .= " WHERE ".$condition;
 			$query .= " ORDER BY ".$fields[0];
@@ -96,7 +97,7 @@
 				}	
 				$i++;
 			}
-			if ($this->tableName[0] == 'products')
+			if ($this->tableName == 'products')
 			{
 				$response[$i]['name'] = 'image';
 				$response[$i]['index'] = 'image';
@@ -115,7 +116,7 @@
 			$response = array ();
 			foreach ($selectArgs as $key => $column)
 				$response[] = $column['caption'];
-			if ($this->tableName[0] == 'products')
+			if ($this->tableName == 'products')
 				$response[] = 'Изображение';
 			return json_encode ($response);	
 		}
@@ -124,7 +125,7 @@
 		{
 			$columns = array_keys ($this->fields);
 			$data = $this->select ($columns, '', PDO::FETCH_ASSOC);
-			if ($this->tableName[0] != 'products')
+			if ($this->tableName != 'products')
 				$response = $data;
 			else
 			{

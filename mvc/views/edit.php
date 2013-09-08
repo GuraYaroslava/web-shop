@@ -8,7 +8,7 @@
 			<?	global $template;
 				$objName	= $_POST['args'][0];	
 				$obj 		= new $objName ();
-				$caption 	= $obj->tableName[1];?>
+				$caption 	= $obj->caption;?>
 				var lastSel = -1;
 				var grid 	= jQuery ('#table');				
 				grid.jqGrid

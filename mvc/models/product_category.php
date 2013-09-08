@@ -14,7 +14,8 @@
 
 		function __construct ()
 		{
-			$this->tableName = ['product_category', 'Товар - Категория'];
+			$this->tableName = 'product_category';
+			$this->caption = 'Товар - Категория';
 			parent::__construct ();
 		}
 	}
