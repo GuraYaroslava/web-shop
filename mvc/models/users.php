@@ -12,7 +12,7 @@
 		function __construct ()
 		{
 			$this->tableName = 'users';
-			$this->caption = 'Ïîëüçîâàòåëè';
+			$this->caption = 'ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð¸';
 			parent::__construct ();
 		}
 	}

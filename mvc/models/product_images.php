@@ -10,7 +10,7 @@
 			function __construct ()
 			{
 				$this->tableName = 'product_images';
-				$this->caption = 'Òîâàðû';
+				$this->caption = 'Ð¢Ð¾Ð²Ð°Ñ€Ñ‹';
 				parent::__construct ();
 			}
 			

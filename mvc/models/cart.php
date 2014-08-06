@@ -11,7 +11,7 @@
 		function __construct ()
 		{
 			$this->tableName = 'cart'; 
-			$this->caption = 'Корзина';
+			$this->caption = 'РљРѕСЂР·РёРЅР°';
 			parent::__construct ();
 		}
 		
